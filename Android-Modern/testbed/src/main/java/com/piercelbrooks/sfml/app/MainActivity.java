@@ -1,4 +1,4 @@
-package com.piercelbrooks.sfml.android_modern;
+package com.piercelbrooks.sfml.app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

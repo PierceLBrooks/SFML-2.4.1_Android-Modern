@@ -8,8 +8,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cFlags ""
-                cppFlags ""
+                cFlags "-Wno-c++11-narrowing"
+                cppFlags "-Wno-c++11-narrowing"
                 abiFilters "armeabi-v7a"
             }
         }

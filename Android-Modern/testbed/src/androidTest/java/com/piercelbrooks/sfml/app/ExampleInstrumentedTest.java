@@ -1,4 +1,4 @@
-package com.piercelbrooks.sfml.android_modern;
+package com.piercelbrooks.sfml.app;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
