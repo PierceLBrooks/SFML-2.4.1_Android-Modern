@@ -10,5 +10,10 @@ public class MainActivity extends SFMLActivity {
         super();
     }
 
-    private native String stringFromJNI();
+    private native String getBaseNativeClass();
+
+    @Override
+    protected String getNativeClass() {
+        return getBaseNativeClass();
+    }
 }

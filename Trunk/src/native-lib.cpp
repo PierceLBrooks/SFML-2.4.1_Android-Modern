@@ -19,7 +19,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *pjvm, void *reserved) {
     gJvm = pjvm;  // cache the JavaVM pointer
     auto env = getEnv();
     //replace with one of your classes in the line below
-    auto randomClass = env->FindClass("com/ssugamejam/stepdimension/SFMLActivity");
+    auto randomClass = env->FindClass(SFML_JNI_CLASS);
     jclass classClass = env->GetObjectClass(randomClass);
     auto classLoaderClass = env->FindClass("java/lang/ClassLoader");
     auto getClassLoaderMethod = env->GetMethodID(classClass, "getClassLoader", "()Ljava/lang/ClassLoader;");
@@ -63,11 +63,6 @@ JNIEnv *getEnv() {
 
 JavaVM *getJvm() {
     return gJvm;
-}
-
-JNIEXPORT jstring JNICALL Java_com_ssugamejam_stepdimension_SFMLActivity_stringFromJNI(JNIEnv *env, jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
 }
 
 int attach(JavaVM** jvm, JNIEnv** env)
@@ -150,104 +145,6 @@ int vibrate(sf::Time duration)
     detach(jvm, attachedHere);
 
     return EXIT_SUCCESS;
-}
-
-int play(const std::string& song)
-{
-    // First we'll need the native activity handle
-    ANativeActivity *activity = sf::getNativeActivity();
-
-    JavaVM* jvm;
-    JNIEnv* env = getEnv();
-    int attachedHere = attach(&jvm, &env);
-
-    // Retrieve class information
-    jclass natact = findClassWithEnv(env, "com/ssugamejam/stepdimension/SFMLActivity");
-
-    // Get the method 'getSelf' and call it
-    jmethodID getss = env->GetStaticMethodID(natact, "getSelf", "()Lcom/ssugamejam/stepdimension/SFMLActivity;");
-    jobject play_obj = env->CallStaticObjectMethod(natact, getss);
-
-    // Get the object's class and retrieve the member name
-    jclass play_cls = env->GetObjectClass(play_obj);
-    jmethodID play = env->GetMethodID(play_cls, "play", "(Ljava/lang/String;)V");
-
-    env->CallVoidMethod(play_obj, play, env->NewStringUTF(song.c_str()));
-
-    // Free references
-    env->DeleteLocalRef(play_obj);
-    env->DeleteLocalRef(play_cls);
-    env->DeleteLocalRef(natact);
-
-    detach(jvm, attachedHere);
-
-    return EXIT_SUCCESS;
-}
-
-int pause()
-{
-    // First we'll need the native activity handle
-    ANativeActivity *activity = sf::getNativeActivity();
-
-    JavaVM* jvm;
-    JNIEnv* env = getEnv();
-    int attachedHere = attach(&jvm, &env);
-
-    // Retrieve class information
-    jclass natact = findClassWithEnv(env, "com/ssugamejam/stepdimension/SFMLActivity");
-
-    // Get the method 'getSelf' and call it
-    jmethodID getss = env->GetStaticMethodID(natact, "getSelf", "()Lcom/ssugamejam/stepdimension/SFMLActivity;");
-    jobject pause_obj = env->CallStaticObjectMethod(natact, getss);
-
-    // Get the object's class and retrieve the member name
-    jclass pause_cls = env->GetObjectClass(pause_obj);
-    jmethodID pause = env->GetMethodID(pause_cls, "pause", "()V");
-
-    env->CallVoidMethod(pause_obj, pause);
-
-    // Free references
-    env->DeleteLocalRef(pause_obj);
-    env->DeleteLocalRef(pause_cls);
-    env->DeleteLocalRef(natact);
-
-    detach(jvm, attachedHere);
-
-    return EXIT_SUCCESS;
-}
-
-bool checkFlag(jobject name)
-{
-    jboolean flag;
-
-    // First we'll need the native activity handle
-    ANativeActivity *activity = sf::getNativeActivity();
-
-    JavaVM* jvm;
-    JNIEnv* env = getEnv();
-    int attachedHere = attach(&jvm, &env);
-
-    // Retrieve class information
-    jclass natact = findClassWithEnv(env, "com/ssugamejam/stepdimension/SFMLActivity");
-
-    // Get the method 'getSelf' and call it
-    jmethodID getss = env->GetStaticMethodID(natact, "getSelf", "()Lcom/ssugamejam/stepdimension/SFMLActivity;");
-    jobject check_obj = env->CallStaticObjectMethod(natact, getss);
-
-    // Get the object's class and retrieve the member name
-    jclass check_cls = env->GetObjectClass(check_obj);
-    jmethodID check = env->GetMethodID(check_cls, "checkFlag", "(Ljava/lang/Object;)Z");
-
-    flag = env->CallBooleanMethod(check_obj, check, name);
-
-    // Free references
-    env->DeleteLocalRef(check_obj);
-    env->DeleteLocalRef(check_cls);
-    env->DeleteLocalRef(natact);
-
-    detach(jvm, attachedHere);
-
-    return (bool)flag;
 }
 
 #ifdef __cplusplus

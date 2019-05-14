@@ -15,12 +15,6 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-// IDCP
-#include <Bpm.hpp>
-#include <Note.hpp>
-#include <Song.hpp>
-#include <Sud.hpp>
-
 #include "Log.hpp"
 
 #ifdef __cplusplus
@@ -35,9 +29,6 @@ JavaVM *getJvm();
 int attach(JavaVM** jvm, JNIEnv** env);
 int detach(JavaVM* jvm, int attachedHere);
 int vibrate(sf::Time duration);
-int play(const std::string& song);
-int pause();
-bool checkFlag(jobject name);
 
 #ifdef __cplusplus
 };

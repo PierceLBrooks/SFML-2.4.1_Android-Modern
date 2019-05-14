@@ -98,7 +98,7 @@ public abstract class SFMLActivity extends NativeActivity implements Lock {
         loadLibrary("sfml-audio");
         loadLibrary("sfml-graphics");
         loadLibrary("sfml-network");
-        loadLibrary("sfml-activity");
+        //loadLibrary("sfml-activity");
         loadLibrary("sfml_android", false);
         //loadLibrary("native-lib", false);
     }
@@ -142,4 +142,6 @@ public abstract class SFMLActivity extends NativeActivity implements Lock {
     public Condition newCondition() {
         return lock.newCondition();
     }
+
+    protected abstract String getNativeClass();
 }

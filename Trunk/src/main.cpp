@@ -1,11 +1,7 @@
 #include "native-lib.hpp"
-#include "StateMachine.hpp"
 
 int main(int argc, char *argv[])
 {
-    idc::StateMachine* menu = new idc::StateMachine();
-    LOGGER << "State: " << menu->setState(LAUNCH_STATE) << "\n";
-
     // Retrieve the JVM
     JavaVM* vm = getJvm();
 
@@ -30,8 +26,6 @@ int main(int argc, char *argv[])
     // so we'll have to track that. You can do minor background
     // work, but keep battery life in mind.
     bool active = true;
-
-    jobject backFlag = env->NewStringUTF("BACK");
 
     while (window.isOpen())
     {
@@ -71,7 +65,6 @@ int main(int argc, char *argv[])
                     if (event.touch.finger == 0)
                     {
                         vibrate(sf::milliseconds(10));
-                        menu->select(&window, sf::Vector2f(sf::Vector2i(event.touch.x, event.touch.y)));
                     }
                     break;
             }
@@ -79,21 +72,14 @@ int main(int argc, char *argv[])
 
         if (active) {
             window.clear(background);
-            menu->render(&window);
             window.display();
         } else {
             sf::sleep(sf::milliseconds(100));
-        }
-
-        if (checkFlag(backFlag)) {
-            menu->back();
         }
     }
 
     // Detach thread again
     vm->DetachCurrentThread();
-
-    delete menu;
 
     return EXIT_SUCCESS;
 }
