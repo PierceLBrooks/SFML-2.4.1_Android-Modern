@@ -10,8 +10,10 @@ int main(int argc, char *argv[])
 
     jint res = vm->AttachCurrentThread(&env, NULL);
 
-    if (res == JNI_ERR)
+    if (res == JNI_ERR) {
+        LOGGER << "ERROR";
         return EXIT_FAILURE;
+    }
 
     sf::VideoMode screen(sf::VideoMode::getDesktopMode());
 

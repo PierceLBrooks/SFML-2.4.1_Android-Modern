@@ -3,20 +3,20 @@
 
 #include "Log.hpp"
 
-idc::Log* idc::Log::self = nullptr;
+sfml::Log* sfml::Log::self = nullptr;
 
-idc::Log::Log() :
+sfml::Log::Log() :
     ss(new std::stringstream())
 {
     self = this;
 }
 
-idc::Log::~Log()
+sfml::Log::~Log()
 {
     delete ss;
 }
 
-idc::Log* idc::Log::getSelf()
+sfml::Log* sfml::Log::getSelf()
 {
     if (self == nullptr)
     {

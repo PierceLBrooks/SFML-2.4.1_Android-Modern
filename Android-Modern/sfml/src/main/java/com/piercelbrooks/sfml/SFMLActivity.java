@@ -91,16 +91,14 @@ public abstract class SFMLActivity extends NativeActivity implements Lock {
     }
 
     private static void loadLibraries() {
-        //loadLibrary("c++_shared", false);
         loadLibrary("openal", false);
         loadLibrary("sfml-system");
         loadLibrary("sfml-window");
         loadLibrary("sfml-audio");
         loadLibrary("sfml-graphics");
         loadLibrary("sfml-network");
-        //loadLibrary("sfml-activity");
+        loadLibrary("sfml-activity");
         loadLibrary("sfml_android", false);
-        //loadLibrary("native-lib", false);
     }
 
     @Override

@@ -13,10 +13,10 @@
 #define LOGE(tag, message) __android_log_print(ANDROID_LOG_ERROR, tag, "%s", message)
 #define LOGW(tag, message) __android_log_print(ANDROID_LOG_WARN, tag, "%s", message)
 #define LOGV(tag, message) __android_log_print(ANDROID_LOG_VERBOSE, tag, "%s", message)
-#define LOGGER *idc::Log::getSelf()
-#define LOG(message) idc::Log::logThere(message)
+#define LOGGER *sfml::Log::getSelf()
+#define LOG(message) sfml::Log::logThere(message)
 
-namespace idc
+namespace sfml
 {
     class Log
     {
