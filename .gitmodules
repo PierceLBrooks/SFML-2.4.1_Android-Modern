@@ -1,3 +1,0 @@
-[submodule "SFML-2.4.1/src/SFML/Audio/openal-soft"]
-	path = SFML-2.4.1/src/SFML/Audio/openal-soft
-	url = https://github.com/PierceLBrooks/openal-soft.git
