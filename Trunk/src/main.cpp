@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
                 case sf::Event::TouchBegan:
                     if (event.touch.finger == 0)
                     {
-                        vibrate(sf::milliseconds(10));
+                        vibrate(sf::milliseconds(100));
                     }
                     break;
             }

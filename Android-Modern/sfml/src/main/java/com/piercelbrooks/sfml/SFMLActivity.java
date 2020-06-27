@@ -140,6 +140,4 @@ public abstract class SFMLActivity extends NativeActivity implements Lock {
     public Condition newCondition() {
         return lock.newCondition();
     }
-
-    protected abstract String getNativeClass();
 }

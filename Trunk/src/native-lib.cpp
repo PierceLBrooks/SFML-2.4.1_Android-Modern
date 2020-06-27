@@ -115,8 +115,8 @@ int vibrate(sf::Time duration)
     int attachedHere = attach(&jvm, &env);
 
     // Retrieve class information
-    jclass natact = findClassWithEnv(env, "com/ssugamejam/stepdimension/SFMLActivity");
-    jclass context = findClassWithEnv(env, "com/ssugamejam/stepdimension/SFMLActivity");
+    jclass natact = findClassWithEnv(env, SFML_JNI_CLASS);
+    jclass context = findClassWithEnv(env, SFML_JNI_CLASS);
 
     // Get the value of a constant
     jfieldID fid = env->GetStaticFieldID(context, "VIBRATOR_SERVICE", "Ljava/lang/String;");
