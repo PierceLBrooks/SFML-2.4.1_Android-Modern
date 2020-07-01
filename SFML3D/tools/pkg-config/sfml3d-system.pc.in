@@ -1,0 +1,11 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib@LIB_SUFFIX@
+includedir=${prefix}/include
+
+Name: sfml3d-system
+Description: The Simple and Fast Multimedia Library, system module.
+URL: http://www.sfml3d-dev.org
+Version: @VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@
+Libs: -L${libdir} -lsfml3d-system
+Cflags: -I${includedir}
