@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML3D_GRAPHICS_HPP
-#define SFML3D_GRAPHICS_HPP
+#ifndef SFML3D_GRAPHICS_MODULE_HPP
+#define SFML3D_GRAPHICS_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -57,7 +57,7 @@
 #include <SFML3D/Graphics/View.hpp>
 
 
-#endif // SFML3D_GRAPHICS_HPP
+#endif // SFML3D_GRAPHICS_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 /// \defgroup graphics Graphics module

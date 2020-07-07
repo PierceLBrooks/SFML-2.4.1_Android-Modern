@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML3D_NETWORK_HPP
-#define SFML3D_NETWORK_HPP
+#ifndef SFML3D_NETWORK_MODULE_HPP
+#define SFML3D_NETWORK_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -42,7 +42,7 @@
 #include <SFML3D/Network/UdpSocket.hpp>
 
 
-#endif // SFML3D_NETWORK_HPP
+#endif // SFML3D_NETWORK_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 /// \defgroup network Network module

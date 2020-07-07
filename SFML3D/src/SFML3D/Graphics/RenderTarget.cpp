@@ -246,7 +246,7 @@ void RenderTarget::draw(const VertexBuffer& buffer, const RenderStates& states)
 
         // Find the OpenGL primitive type
         static const GLenum modes[] = {GL_POINTS, GL_LINES, GL_LINE_STRIP, GL_TRIANGLES,
-                                       GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_QUADS};
+                                       GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN/*, GL_QUADS*/};
         GLenum mode = modes[buffer.getPrimitiveType()];
 
         // Setup the pointers to the vertices' components
@@ -328,7 +328,7 @@ void RenderTarget::draw(const VertexBuffer& buffer, const RenderStates& states)
                     }
                 }
 
-                glBindVertexArray(arrayObject);
+                glBindVertexArrayOES(arrayObject);
 
                 // Maximum array object age in draw calls before being purged
                 // If an array object was not used to draw this many
@@ -343,7 +343,7 @@ void RenderTarget::draw(const VertexBuffer& buffer, const RenderStates& states)
 
                     if (arrayAge->second > maxArrayObjectAge)
                     {
-                        glCheck(glDeleteVertexArrays(1, &(arrayAge->first)));
+                        glCheck(glDeleteVertexArraysOES(1, &(arrayAge->first)));
                         m_arrayAgeCount.erase(arrayAge++);
                         continue;
                     }
@@ -376,26 +376,26 @@ void RenderTarget::draw(const VertexBuffer& buffer, const RenderStates& states)
 
                 if (vertexLocation >= 0)
                 {
-                    glCheck(glEnableVertexAttribArrayARB(vertexLocation));
-                    glCheck(glVertexAttribPointerARB(vertexLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, position))));
+                    glCheck(glEnableVertexAttribArray(vertexLocation));
+                    glCheck(glVertexAttribPointer(vertexLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, position))));
                 }
 
                 if (colorLocation >= 0)
                 {
-                    glCheck(glEnableVertexAttribArrayARB(colorLocation));
-                    glCheck(glVertexAttribPointerARB(colorLocation, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, color))));
+                    glCheck(glEnableVertexAttribArray(colorLocation));
+                    glCheck(glVertexAttribPointer(colorLocation, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, color))));
                 }
 
                 if (texCoordLocation >= 0)
                 {
-                    glCheck(glEnableVertexAttribArrayARB(texCoordLocation));
-                    glCheck(glVertexAttribPointerARB(texCoordLocation, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, texCoords))));
+                    glCheck(glEnableVertexAttribArray(texCoordLocation));
+                    glCheck(glVertexAttribPointer(texCoordLocation, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, texCoords))));
                 }
 
                 if (normalLocation >= 0)
                 {
-                    glCheck(glEnableVertexAttribArrayARB(normalLocation));
-                    glCheck(glVertexAttribPointerARB(normalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, normal))));
+                    glCheck(glEnableVertexAttribArray(normalLocation));
+                    glCheck(glVertexAttribPointer(normalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, normal))));
                 }
             }
 
@@ -403,19 +403,19 @@ void RenderTarget::draw(const VertexBuffer& buffer, const RenderStates& states)
             glCheck(glDrawArrays(mode, 0, buffer.getVertexCount()));
 
             if (arrayObject)
-                glBindVertexArray(0);
+                glBindVertexArrayOES(0);
 
             if (vertexLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(vertexLocation));
+                glCheck(glDisableVertexAttribArray(vertexLocation));
 
             if (colorLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(colorLocation));
+                glCheck(glDisableVertexAttribArray(colorLocation));
 
             if (texCoordLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(texCoordLocation));
+                glCheck(glDisableVertexAttribArray(texCoordLocation));
 
             if (normalLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(normalLocation));
+                glCheck(glDisableVertexAttribArray(normalLocation));
         }
 
         // Unbind the shader, if any was bound in legacy mode
@@ -498,7 +498,7 @@ void RenderTarget::draw(const Vertex* vertices, unsigned int vertexCount,
 
         // Find the OpenGL primitive type
         static const GLenum modes[] = {GL_POINTS, GL_LINES, GL_LINE_STRIP, GL_TRIANGLES,
-                                       GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_QUADS};
+                                       GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN/*, GL_QUADS*/};
         GLenum mode = modes[type];
 
         // Setup the pointers to the vertices' components
@@ -529,42 +529,42 @@ void RenderTarget::draw(const Vertex* vertices, unsigned int vertexCount,
 
             if (vertexLocation >= 0)
             {
-                glCheck(glEnableVertexAttribArrayARB(vertexLocation));
-                glCheck(glVertexAttribPointerARB(vertexLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), data + offsetof(Vertex, position)));
+                glCheck(glEnableVertexAttribArray(vertexLocation));
+                glCheck(glVertexAttribPointer(vertexLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), data + offsetof(Vertex, position)));
             }
 
             if (colorLocation >= 0)
             {
-                glCheck(glEnableVertexAttribArrayARB(colorLocation));
-                glCheck(glVertexAttribPointerARB(colorLocation, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), data + offsetof(Vertex, color)));
+                glCheck(glEnableVertexAttribArray(colorLocation));
+                glCheck(glVertexAttribPointer(colorLocation, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), data + offsetof(Vertex, color)));
             }
 
             if (texCoordLocation >= 0)
             {
-                glCheck(glEnableVertexAttribArrayARB(texCoordLocation));
-                glCheck(glVertexAttribPointerARB(texCoordLocation, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), data + offsetof(Vertex, texCoords)));
+                glCheck(glEnableVertexAttribArray(texCoordLocation));
+                glCheck(glVertexAttribPointer(texCoordLocation, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), data + offsetof(Vertex, texCoords)));
             }
 
             if (normalLocation >= 0)
             {
-                glCheck(glEnableVertexAttribArrayARB(normalLocation));
-                glCheck(glVertexAttribPointerARB(normalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), data + offsetof(Vertex, normal)));
+                glCheck(glEnableVertexAttribArray(normalLocation));
+                glCheck(glVertexAttribPointer(normalLocation, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), data + offsetof(Vertex, normal)));
             }
 
             // Draw the primitives
             glCheck(glDrawArrays(mode, 0, vertexCount));
 
             if (vertexLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(vertexLocation));
+                glCheck(glDisableVertexAttribArray(vertexLocation));
 
             if (colorLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(colorLocation));
+                glCheck(glDisableVertexAttribArray(colorLocation));
 
             if (texCoordLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(texCoordLocation));
+                glCheck(glDisableVertexAttribArray(texCoordLocation));
 
             if (normalLocation >= 0)
-                glCheck(glDisableVertexAttribArrayARB(normalLocation));
+                glCheck(glDisableVertexAttribArray(normalLocation));
         }
 
         // Unbind the shader, if any was bound in legacy mode
@@ -768,17 +768,17 @@ void RenderTarget::applyBlendMode(BlendMode mode)
         // Alpha blending
         default :
         case BlendAlpha :
-            if (GLEW_EXT_blend_func_separate)
+            /*if (GLEW_EXT_blend_func_separate)
                 glCheck(glBlendFuncSeparateEXT(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA));
-            else
+            else*/
                 glCheck(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
             break;
 
         // Additive blending
         case BlendAdd :
-            if (GLEW_EXT_blend_func_separate)
+            /*if (GLEW_EXT_blend_func_separate)
                 glCheck(glBlendFuncSeparateEXT(GL_SRC_ALPHA, GL_ONE, GL_ONE, GL_ONE));
-            else
+            else*/
                 glCheck(glBlendFunc(GL_SRC_ALPHA, GL_ONE));
             break;
 

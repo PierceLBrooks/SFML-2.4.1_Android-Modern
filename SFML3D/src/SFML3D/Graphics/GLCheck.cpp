@@ -110,7 +110,7 @@ void glCheckError(const char* file, unsigned int line)
 ////////////////////////////////////////////////////////////
 void ensureGlewInit()
 {
-    static bool initialized = false;
+    /*static bool initialized = false;
     if (!initialized)
     {
         GLenum status = glewInit();
@@ -122,7 +122,7 @@ void ensureGlewInit()
         {
             err() << "Failed to initialize GLEW, " << glewGetErrorString(status) << std::endl;
         }
-    }
+    }*/
 }
 
 } // namespace priv

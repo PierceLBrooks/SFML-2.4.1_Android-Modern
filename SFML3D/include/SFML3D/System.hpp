@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML3D_SYSTEM_HPP
-#define SFML3D_SYSTEM_HPP
+#ifndef SFML3D_SYSTEM_MODULE_HPP
+#define SFML3D_SYSTEM_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -48,7 +48,7 @@
 #include <SFML3D/System/Vector2.hpp>
 #include <SFML3D/System/Vector3.hpp>
 
-#endif // SFML3D_SYSTEM_HPP
+#endif // SFML3D_SYSTEM_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 /// \defgroup system System module

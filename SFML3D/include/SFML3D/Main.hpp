@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML3D_MAIN_HPP
-#define SFML3D_MAIN_HPP
+#ifndef SFML3D_MAIN_MODULE_HPP
+#define SFML3D_MAIN_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -40,4 +40,4 @@
 #endif
 
 
-#endif // SFML3D_MAIN_HPP
+#endif // SFML3D_MAIN_MODULE_HPP

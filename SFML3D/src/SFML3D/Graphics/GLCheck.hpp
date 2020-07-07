@@ -29,7 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML3D/Config.hpp>
-#include <GL/glew.h>
+#include <SFML3D/OpenGL.hpp>
 #include <string>
 
 

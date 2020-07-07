@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML3D_AUDIO_HPP
-#define SFML3D_AUDIO_HPP
+#ifndef SFML3D_AUDIO_MODULE_HPP
+#define SFML3D_AUDIO_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -45,7 +45,7 @@
 #include <SFML3D/Audio/SoundStream.hpp>
 
 
-#endif // SFML3D_AUDIO_HPP
+#endif // SFML3D_AUDIO_MODULE_HPP
 
 ////////////////////////////////////////////////////////////
 /// \defgroup audio Audio module
